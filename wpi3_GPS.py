@@ -6,7 +6,7 @@ import datetime
 import os
 
 ser = serial.Serial(               #みちびき対応ＧＰＳ用の設定
-  port = "/dev/ttyAMA0",           #シリアル通信を用いる
+  port = "/dev/ttyS0",           #シリアル通信を用いる
   baudrate = 9600,                 #baudレート
   parity = serial.PARITY_NONE,     #パリティ
   bytesize = serial.EIGHTBITS,     #データのビット数
