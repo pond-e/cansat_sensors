@@ -44,12 +44,12 @@ def GPS_thread():
         #csv形式で出力する用のデータを変数にまとめて保存する(なければ０とする)
         alt_lat_long = "%3.2f,%5.6f,%5.6f" % (altitude,lat_10,long_10) if gpgga[9] else "0,0,0" #高度、緯度、経度
         print(alt_lat_long)
-###############
+        ###############
         #GSA 特定タイプを見ることでGPSの通信状況を確認する
         #$GPGSA,UTC時刻,特定タイプ,衛星番号,精度低下率(位置、水平、垂直)
         #if (gps_data.startswith('$GPGSA')):  print gps_data, #特定タイプ(2D,3D等)を確認するために表示。3の時が良好。
-###############
-        #GSV 受信した衛星の位置等の情報を記録する
+        ###############
+       #GSV 受信した衛星の位置等の情報を記録する
         #$GPGSV,UTC時刻,総センテンス数,このセンテンスの番号,総衛星数,
         #衛星番号,衛星仰角,衛星方位角,キャリア/ノイズ比,　を繰り返す
         if (gps_data.startswith('$GPGSV')):
@@ -74,7 +74,7 @@ def GPS_thread():
             gsv4 =  gpgsv[16] + gpgsv[17] + gpgsv[18]#四つ目の衛星
             f.write(gsv4 + '\n')
         f.close()
-#############
+        #############
         #ZDA NMEA出力における最後の行のため、時間を調べつつ一括ファイル出力する
         #$GPZDA,UTC時刻(hhmmss.mm),日,月,西暦,時,分,
         if (gps_data.startswith('$GPZDA')):
@@ -136,3 +136,4 @@ if __name__ == "__main__":
     thread_mpu = threading.Thread(target=mpu_thread)
     thread_GPS.start()
     thread_mpu.start()
+
