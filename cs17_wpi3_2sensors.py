@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 ############################################################
-# Written by N.U @ Takada Laboratory on 2018.04.16
+# Written by pond-e
 #
 # Environment:  Python 3.4.2
-#               OS: Raspbian 8.0 (jessie)
-#               on Raspberry Pi 3
+#               OS: Raspi OS
+#               on Raspberry Pi Zero W
 # Used sensor: MPU-9250(9軸センサ),BME-280(温度、湿度、気圧センサ)
 #
 #
