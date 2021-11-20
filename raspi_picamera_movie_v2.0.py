@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # coding: utf-8
 ##picameraによる動画撮影プログラム
-##製作者：A.M＠高田研究室
 ##使い方：$ python raspi_picamera_movie_v1.0.py
 
 import picamera        #picameraモジュールの呼び出し
