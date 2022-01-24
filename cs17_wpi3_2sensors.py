@@ -93,48 +93,6 @@ def get_calib_param():
             digH[i] = (-digH[i] ^ 0xFFFF) + 1
             #########################bme280 settings end####################
 
-
-#########################GPS setting start######################
-ser = serial.Serial(  # みちびき対応ＧＰＳ用の設定
-    port="/dev/ttyAMA0",  # シリアル通信を用いる
-    baudrate=9600,  # baudレート
-    parity=serial.PARITY_NONE,  # パリティ
-    bytesize=serial.EIGHTBITS,  # データのビット数
-    stopbits=serial.STOPBITS_ONE,  # ストップビット数
-    timeout=None,  # タイムアウト値
-    xonxoff=0,  # ソフトウェアフロー制御
-    rtscts=0,  # RTS/CTSフロー制御
-)
-
-# 後で使う変数をあらかじめ宣言
-alt_lat_long = '0,0,0'  # GPSから得られる、高度、緯度、経度の情報
-num_sat = '0'  # GPSから得られる、衛星の個数の情報
-
-
-def sixty_to_ten(x):
-    return x // 1 + x % 1 / 100 / 60
-
-
-# GGA用のファイル初期化
-with open('datagga.csv', 'w') as f:
-    f.write('yyyy-mm-dd HH:MM:SS.ffffff ,a number of satellites ,high ,latitude ,longitude \n')  # 出力フォーマット
-
-# GSV用のファイル初期化
-with open('datagsv.csv', 'w') as f:
-    f.write('No. ,Elevation in degrees ,degrees in true north \n')  # 仰角と方位角
-
-now = datetime.datetime.now()
-if os.path.exists("datagga.csv"):
-    new_name = "datagga_{:%Y%m%d-%H%M%S}.csv".format(now)
-    os.rename("datagga.csv", new_name)
-
-# 出力フォーマット
-print("yyyy-mm-dd HH:MM:SS.ffffff ,a number of satellites ,high ,latitude ,longitude")
-print("No. ,Elevation in degrees ,degrees in true north \n")
-
-
-#########################GPS setting end######################
-
 #########################bme280 date get settings start####################
 # データの取得
 def readData():
@@ -578,6 +536,7 @@ def calibGyro(_count=1000):
 
 
 ####################mpu9250 date get settings end##################
+
 if __name__ == '__main__':
 
     # bus     = smbus.SMBus(1)
